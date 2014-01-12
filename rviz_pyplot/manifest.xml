@@ -1,13 +1,13 @@
 <package>
-  <description brief="rviz_plotting">
+  <description brief="rviz_pyplot">
 
-     rviz_plotting
+     rviz_pyplot
 
   </description>
   <author>Paul Furgale</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/rviz_plotting</url>
+  <url>http://github.com/rviz_pyplot</url>
 
   <export>
     <python path="${prefix}/python"/>
