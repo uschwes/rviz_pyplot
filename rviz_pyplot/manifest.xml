@@ -1,0 +1,19 @@
+<package>
+  <description brief="rviz_plotting">
+
+     rviz_plotting
+
+  </description>
+  <author>Paul Furgale</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/rviz_plotting</url>
+
+  <export>
+    <python path="${prefix}/python"/>
+  </export>
+
+
+</package>
+
+
