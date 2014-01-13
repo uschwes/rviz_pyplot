@@ -14,7 +14,10 @@ Y = S * np.random.rand(N,3)
 # Create a plotter
 plotter = rpp.Plotter()
 
-pointCloud = plotter.createPointCloud()
+# Get a point cloud object from the plotter
+# The topic is where the points will be published
+pointCloud = rpp.PointCloudMarker(topic="/rviz_pyplot/points")
+
 # Set the points.
 pointCloud.setPoints(Y)
 

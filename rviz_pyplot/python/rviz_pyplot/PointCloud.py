@@ -26,7 +26,7 @@ class PointCloudMarker(PlotObject):
     """An object representing a point cloud to be plotted.
     """
     
-    def __init__(self, frameId, topic, points=None, rgbList=None, intensityList=None, namedChannels=None):
+    def __init__(self, frameId=None, topic=None, points=None, rgbList=None, intensityList=None, namedChannels=None):
         """Initializes the point cloud object
         """
 

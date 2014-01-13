@@ -4,6 +4,10 @@ Collection of utilities to manipulate structured arrays.
 Most of these functions were initially implemented by John Hunter for matplotlib.
 They have been rewritten and extended for convenience.
 
+From: https://github.com/numpy/numpy/blob/master/numpy/lib/recfunctions.py
+
+the basic numpy on OSX doesn't have this file.
+
 """
 from __future__ import division, absolute_import, print_function
 
