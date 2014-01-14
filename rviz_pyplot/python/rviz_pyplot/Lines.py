@@ -32,6 +32,10 @@ class LinesMarker(PlotObject):
         self._colors = []
 
     def addLine(self, p1, p2, color=None):
+        if not (len(p1.shape) == 1 and p1.shape[0] == 3):
+            raise RuntimeError("p1 must be a 3 vector. Got {0}".format(p1.shape))
+        if not (len(p2.shape) == 1 and p2.shape[0] == 3):
+            raise RuntimeError("p1 must be a 3 vector. Got {0}".format(p2.shape))
         self._points.append(p1)
         self._points.append(p2)
         if color is None:
