@@ -28,6 +28,7 @@ class Plotter(object):
         # Create a map for publishers
         self._pointCloudPubs = {}
         self._markerArrayPubs = {}
+        self._imagePubs = {}
         
         # \todo publish transforms in a thread.
 

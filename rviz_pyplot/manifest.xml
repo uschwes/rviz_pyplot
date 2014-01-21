@@ -9,6 +9,11 @@
   <review status="unreviewed" notes=""/>
   <url>http://github.com/rviz_pyplot</url>
 
+  <depends package="rviz"/>  
+  <depends package="sensor_msgs"/>  
+  <depends package="visualization_msgs"/>
+  <depends package="cv_bridge"/>
+
   <export>
     <python path="${prefix}/python"/>
   </export>
