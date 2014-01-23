@@ -62,8 +62,8 @@ class LinesMarker(PlotObject):
 
         return lines
 
-    def appendMessages(self, stamp, pointClouds, markers):
-        markers.append( (self._topic, self.buildMessage(stamp)) )
+    def appendMessages(self, stamp, messages):
+        messages.append( (self._topic, self.buildMessage(stamp)) )
 
 
         
