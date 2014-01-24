@@ -130,3 +130,8 @@ class Plotter(object):
         img = ImageMarker(frameId=frameId, topic=topic)
         img.addImage(I)
         self.plot(img)
+
+    def plotText(self, text, position, frameId=None, topic=None):
+        textMarker = TextMarker(frameId=frameId, topic=topic)
+        textMarker.setText(text, position)
+        self.plot(textMarker)
