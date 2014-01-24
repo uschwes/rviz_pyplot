@@ -56,7 +56,7 @@ class Plotter(object):
     def getDefaultMarkerArrayTopic(self):
         return self._defaultMarkerArrayTopic
 
-    def getPublisher(self, messageType, topic=None):
+    def getPublisher(self, messageType, topic=None, latch=True):
         publisherList = self._publishers[messageType]
         if topic is None:
             topic = self._defaultTopics[messageType]
@@ -65,7 +65,7 @@ class Plotter(object):
             pub = publisherList[topic]
         else:
             # Initialize a new publisher
-            pub = rospy.Publisher(topic, messageType, latch=True)
+            pub = rospy.Publisher(topic, messageType, latch=latch)
             # Save the publisher for later
             publisherList[topic] = pub
 
@@ -82,8 +82,9 @@ class Plotter(object):
         for key in self._markerArrayPubs.keys():
             print "\t{0}".format(key)
 
-    def plot( self, plotItems ):
-        stamp = rospy.Time.now()
+    def plot( self, plotItems, stamp=None ):
+        if stamp is None:
+            stamp = rospy.Time.now()
         # Accumulate a list of point clouds and markers to publish
         messages = []
         if type(plotItems) == list:
