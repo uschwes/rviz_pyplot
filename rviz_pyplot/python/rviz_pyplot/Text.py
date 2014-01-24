@@ -27,13 +27,19 @@ class TextMarker(PlotObject):
             self._markerNamespace = markerNamespace
 
         self._text = None
+        self._position = np.zeros(3)
 
-    def setText(self, text):
+    def setText(self, text, position):
         self._text = text
+        self._position = position
         
     def buildMessage(self, stamp):
-        text = initMarker(baseFrameId=self._frameId, markerNamespace=self._markerNamespace, markerId=self._markerId, stamp=stamp, markerType=Marker.LINE_LIST)
-        text.scale.x = self._scale
+        text = initMarker(baseFrameId=self._frameId, markerNamespace=self._markerNamespace, markerId=self._markerId, stamp=stamp, markerType=Marker.TEXT_VIEW_FACING)
+        text.scale.z = self._scale
+
+        text.pose.position.x = self._position[0]
+        text.pose.position.y = self._position[1]
+        text.pose.position.z = self._position[2]
         
         # This next line is awesome
         text.text = self._text

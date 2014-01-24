@@ -7,6 +7,8 @@ import Lines
 reload(Lines)
 import Image as ImagePy
 reload(ImagePy)
+import Text
+reload(Text)
 
 from PointCloud import PointCloudMarker
 from PlotObject import PlotObject  
@@ -131,7 +133,7 @@ class Plotter(object):
         img.addImage(I)
         self.plot(img)
 
-    def plotText(self, text, position, frameId=None, topic=None):
-        textMarker = TextMarker(frameId=frameId, topic=topic)
+    def plotText(self, text, position, scale, frameId=None, topic=None):
+        textMarker = Text.TextMarker(frameId=frameId, topic=topic, scale=scale)
         textMarker.setText(text, position)
         self.plot(textMarker)
