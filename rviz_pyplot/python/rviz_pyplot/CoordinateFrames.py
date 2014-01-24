@@ -90,8 +90,8 @@ class CoordinateFramesMarker(PlotObject):
             cframes.colors.append(zcolor)
 
         return cframes
-    def appendMessages(self, stamp, pointClouds, markers):
-        markers.append( (self._topic, self.buildMessage(stamp)) )
+    def appendMessages(self, stamp, messages):
+        messages.append( (self._topic, self.buildMessage(stamp)) )
 
 
         

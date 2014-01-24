@@ -105,5 +105,5 @@ class PointCloudMarker(PlotObject):
         msg.point_step=channelStart
         msg.row_step=channelStart * self._numPoints
         return msg
-    def appendMessages(self, stamp, pointClouds, markers):
-        pointClouds.append( (self._topic, self.buildMessage(stamp)) )
+    def appendMessages(self, stamp, messages):
+        messages.append( (self._topic, self.buildMessage(stamp)) )
