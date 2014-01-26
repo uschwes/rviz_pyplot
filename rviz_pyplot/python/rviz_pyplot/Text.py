@@ -34,7 +34,11 @@ class TextMarker(PlotObject):
         self._position = position
         
     def buildMessage(self, stamp):
-        text = initMarker(baseFrameId=self._frameId, markerNamespace=self._markerNamespace, markerId=self._markerId, stamp=stamp, markerType=Marker.TEXT_VIEW_FACING)
+        text = initMarker(baseFrameId=self._frameId, 
+                          markerNamespace=self._markerNamespace, 
+                          markerId=self._markerId, 
+                          stamp=stamp, 
+                          markerType=Marker.TEXT_VIEW_FACING)
         text.scale.z = self._scale
 
         text.pose.position.x = self._position[0]
@@ -47,7 +51,3 @@ class TextMarker(PlotObject):
 
     def appendMessages(self, stamp, messages):
         messages.append( (self._topic, self.buildMessage(stamp)) )
-
-
-        
-        
