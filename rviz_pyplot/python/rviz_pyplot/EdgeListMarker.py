@@ -12,8 +12,9 @@ class EdgeListMarker(PlotObject):
     """
     
     def __init__(self, frameId = None, topic=None, markerNamespace=None, markerId=0, defaultColor=None, lineWidth=0.01):
-        """Initialize the coordinate frames marker
-        """
+        """Initialize the edge list marker
+        """        
+            
         self._topic = topic
         self._markerId = markerId
         self._lineWidth = lineWidth
@@ -31,13 +32,18 @@ class EdgeListMarker(PlotObject):
 
         self._edgePointPairs = []
 
-    def addEdges(self, Ts):
-        points = [Point(*p) for p in [T[0:3, 3] for T in Ts]]
+    def addEdges(self, transformationMatrixList):
+        points = [Point(*p) for p in [T[0:3, 3] for T in transformationMatrixList]]
         pairs = zip(points[:-1], points[1:])
         self._edgePointPairs.extend(pairs)
 
     def buildMessage(self, stamp):
-        cframes = initMarker(baseFrameId=self._frameId, markerNamespace=self._markerNamespace, markerId=self._markerId, stamp=stamp, markerType=Marker.LINE_LIST)
+        cframes = initMarker(   baseFrameId=self._frameId, 
+                                markerNamespace=self._markerNamespace, 
+                                markerId=self._markerId, 
+                                stamp=stamp, 
+                                markerType=Marker.LINE_LIST)
+
         cframes.scale.x = self._lineWidth
 
         for pr in self._edgePointPairs:
