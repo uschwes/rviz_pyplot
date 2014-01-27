@@ -33,9 +33,6 @@ class EdgeListMarker(PlotObject):
 
     def addEdges(self, Ts):
         points = [Point(*p) for p in [T[0:3, 3] for T in Ts]]
-        # for some unknown reason, the last point in the list is [0,0,0] again
-        # we need to remove this, otherwise we get an edge from the last vertex to the first
-        del points[-1]
         pairs = zip(points[:-1], points[1:])
         self._edgePointPairs.extend(pairs)
 
