@@ -24,7 +24,7 @@ class Plotter(object):
         if initRosNode:
             if rosNodeName is None:
                 rosNodeName = 'rviz_pyplot'#_%s'.format(uuid.uuid1().get_hex())
-            rospy.init_node(rosNodeName,['Plotter.py'])
+            rospy.init_node(rosNodeName,['Plotter.py'], disable_signals=True)
         
         if visFrame is None:
             visFrame = "/rviz_pyplot"
