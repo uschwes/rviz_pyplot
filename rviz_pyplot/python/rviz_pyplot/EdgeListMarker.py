@@ -31,6 +31,9 @@ class EdgeListMarker(PlotObject):
             self._markerNamespace = markerNamespace
 
         self._edgePointPairs = []
+    
+    def addEdge(self, p0, p1):
+        self._edgePointPairs.append((Point(*p0), Point(*p1)))
 
     def addEdges(self, transformationMatrixList):
         points = [Point(*p) for p in [T[0:3, 3] for T in transformationMatrixList]]
