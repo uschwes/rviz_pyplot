@@ -22,6 +22,10 @@ class EdgeListMarker(PlotObject):
 
         if defaultColor is None:
             self._defaultColor = ColorRGBA(*np.array([0.5,0.5,0.5,1.0]))
+        elif defaultColor == 'red':
+            self._defaultColor = ColorRGBA(*np.array([1.0,0,0,1.0]))
+        elif defaultColor == 'cyan':
+            self._defaultColor = ColorRGBA(*np.array([0.0,1,1,1.0]))
         else:
             self._defaultColor = defaultColor
 

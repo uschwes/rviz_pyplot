@@ -22,6 +22,9 @@ class CoordinateFramesMarker(PlotObject):
         if defaultColors is None:
             self._defaultColors = np.eye(3,4)
             self._defaultColors[:,3] = np.ones(3)
+        elif defaultColors == 'gray':
+            self._defaultColors = np.ones(3,4) * 0.5;
+            self._defaultColors[:,3] = np.ones(3)
         else:
             self._defaultColors = defaultColors
         
