@@ -1,6 +1,7 @@
 import Plotter
 reload(Plotter)
 from Plotter import Plotter
+#from Bagger import Bagger
 from PointCloud import PointCloudMarker
 from CoordinateFrames import CoordinateFramesMarker
 from Lines import LinesMarker
