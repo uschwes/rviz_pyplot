@@ -19,6 +19,8 @@ from sensor_msgs.msg import PointCloud2, Image
 from visualization_msgs.msg import Marker, MarkerArray
 
 
+publishedMessages = []  # to be able to delete them later with clf
+
 class Plotter(object):
     def __init__(self, initRosNode=True, rosNodeName=None, visFrame=None):
         if initRosNode:
@@ -39,16 +41,27 @@ class Plotter(object):
         self._defaultTopics[PointCloud2] = "{0}/points".format(rospy.get_name())
         self._defaultTopics[MarkerArray] = "{0}/marker_array".format(rospy.get_name())
         self._defaultTopics[Image] = "{0}/images".format(rospy.get_name())
-        
+
         # \todo publish transforms in a thread.
 
     def __del__(self):
         # \todo clean up ROS
         pass
-    
+
     def clf(self):
-        """Clears all active messages"""
-        pass
+	global publishedMessages
+	for topic,msg in publishedMessages:
+	    if type(msg) == Marker:
+	      pub = self.getPublisher(Marker, topic)
+	      msg.action = Marker.DELETE
+	    if type(msg) == MarkerArray:
+	      pub = self.getPublisher(MarkerArray, topic)
+	      for m in msg.markers:
+		m.action = Marker.DELETE
+	    else:
+		continue
+	    pub.publish( msg )
+	publishedMessages = []
     
     def getDefaultPointCloudTopic(self):
         return self._defaultPointCloudTopic
@@ -94,6 +107,8 @@ class Plotter(object):
             # Assume this is a single plotItem
             plotItems.appendMessages(stamp, messages)
 
+        global publishedMessages
+	
         topics = {}        
         for topic, msg in messages:
             if type(msg) == PointCloud2:
@@ -104,6 +119,7 @@ class Plotter(object):
                 if msg.header.frame_id is None:
                     msg.header.frame_id = self._visFrame
                 pub.publish( msg )
+                publishedMessages.append( (topic,msg) )
             elif type(msg) == Marker:
                 msg.header.stamp = stamp
                 if msg.header.frame_id is None:
@@ -122,12 +138,13 @@ class Plotter(object):
                 if msg.header.frame_id is None:
                     msg.header.frame_id = self._visFrame
                 pub.publish( msg )
+                publishedMessages.append( (topic,msg) )
             else:
                 raise RuntimeError("Unknown message type {0}\n{1}".format(type(msg), msg))
         for topic, ma in topics.iteritems():
             pub = self.getPublisher(MarkerArray, topic)
             pub.publish(ma)
-    
+            publishedMessages.append( (topic,ma) )
 
     def plotImage(self, I, frameId=None, topic=None):
         img = ImageMarker(frameId=frameId, topic=topic)
